@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import { CommonNav } from "../components/navigation/common-nav";
 import { getProtectedResource } from "../services/message.service";
 import { CreateTodo } from "../components/create-todo";
+import ListTodo from "../components/list-todo";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -91,10 +92,10 @@ export const ToDoPage = () => {
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <CreateTodo/>
+          <CreateTodo />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Item Two
+          <ListTodo />
         </TabPanel>
       </Box>
     </>

@@ -23,3 +23,23 @@ export const createNewTodo = async (accessToken, body) => {
         error,
     };
 };
+
+export const getAllTodos = async (accessToken, user) => {
+
+    console.log(accessToken);
+    const config = {
+        url: `${apiServerUrl}/api/v1/todo/list-all/` + user,
+        method: "GET",
+        headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+        },
+    };
+
+    const { data, error } = await callExternalApi({ config });
+
+    return {
+        data: data || null,
+        error,
+    };
+};
