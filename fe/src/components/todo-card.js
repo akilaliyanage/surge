@@ -27,6 +27,7 @@ import CloseIcon from '@mui/icons-material/Close';
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
+import UploadImageToS3 from '../services/UploadImageToS3';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
