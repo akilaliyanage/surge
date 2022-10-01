@@ -22,16 +22,29 @@ messagesRouter.post("/create", checkJwt, async(req, res) => {
     description: req.body.description,
     createdUser: req.body.createdBy,
     createdDate: req.body.date,
-    file: "",
+    file: req.body.file,
     status: req.body.status
   })
 
   try {
-    
+
     const isdatasaved = await data.save()
 
     console.log(isdatasaved);
     res.status(200).send(isdatasaved)
+  } catch (error) {
+    res.status(500).send(error) 
+  }
+});
+
+messagesRouter.get("/list-all/:user", checkJwt, async(req, res) => {
+
+  try {
+
+    const allTodos = await Todo.find({createdUser : req.params.user})
+
+    console.log(allTodos);
+    res.status(200).send(allTodos)
   } catch (error) {
     res.status(500).send(error) 
   }
