@@ -63,7 +63,7 @@ export const TodoCard = () => {
             "createdBy": user.name,
             "date": new Date().toJSON().slice(0, 10).replace(/-/g, '/'),
             "status": "todo",
-            "file" :configs.S3_ACCESS_URL + window.localStorage.getItem('filename')
+            "file": configs.S3_ACCESS_URL + window.localStorage.getItem('filename')
         }
 
         console.log(body);
@@ -131,7 +131,7 @@ export const TodoCard = () => {
                     <br />
                     <br />
                     <Button variant="outlined" component="label" fullWidth='true'>
-                        <UploadImageToS3/>
+                        <UploadImageToS3 />
                     </Button>
 
                     <br />
