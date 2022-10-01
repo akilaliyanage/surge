@@ -107,19 +107,21 @@ import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { useAuth0 } from "@auth0/auth0-react";
 import { getAllTodos } from '../services/api.service';
+import Button from '@mui/material/Button';
 
 const columns = [
-  { field: '_id', headerName: 'ID', width: 90 },
+  { field: '_id', headerName: 'ID', width: 0 },
   {
     field: 'name',
-    headerName: 'ID',
+    headerName: 'Name',
     width: 150,
     editable: true,
+    hidden: true
   },
   {
     field: 'description',
     headerName: 'Description',
-    width: 150,
+    width: 200,
     editable: true,
   },
   {
@@ -132,6 +134,23 @@ const columns = [
     field: 'status',
     headerName: 'Status',
     width: 160,
+  },
+  {
+    field: 'action',
+    width: 200,
+    headerName: 'Action',
+    sortable: false,
+    renderCell: (params) => {
+      const onClick = (e) => {
+        e.stopPropagation(); // don't select this row after clicking
+
+        window.open(params.row.file)
+        
+        console.log(params.row.file);
+      };
+
+      return <Button variant='contained' onClick={onClick}>DOWNLOAD ATTACHMENT</Button>;
+    },
   },
 ];
 
@@ -167,11 +186,12 @@ export default function ListTodo() {
       isMounted = false;
     };
 
-  },  [getAccessTokenSilently]);
+  }, [getAccessTokenSilently]);
 
   return (
     <Box sx={{ height: 400, width: '100%' }}>
       <DataGrid
+        sx={{ fontWeight: 'bold', fontSize: '1.5rem' }}
         rows={todos}
         columns={columns}
         pageSize={5}
