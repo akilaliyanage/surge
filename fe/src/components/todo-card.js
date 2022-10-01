@@ -24,6 +24,8 @@ import MuiAlert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import CloseIcon from '@mui/icons-material/Close';
 
+import configs from '../assets/configs/config.json'
+
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -60,13 +62,15 @@ export const TodoCard = () => {
             "description": description,
             "createdBy": user.name,
             "date": new Date().toJSON().slice(0, 10).replace(/-/g, '/'),
-            "status": "todo"
+            "status": "todo",
+            "file" :configs.S3_ACCESS_URL + window.localStorage.getItem('filename')
         }
+
+        console.log(body);
 
         const { data, error } = await createNewTodo(accessToken, body)
 
         if (data) {
-            console.log(data);
             setAlert("Todo saved successfully!!")
             handleClick()
         } else {
@@ -123,12 +127,11 @@ export const TodoCard = () => {
                     <TextField id="outlined-basic" label="Task Name" variant="outlined" fullWidth='true' name="name" onChange={e => setName(e.target.value)} />
                     <br />
                     <br />
-                    <TextField id="outlined-basic" label="Task Description" variant="outlined" fullWidth='true' name="description" onChange={e => setExpanded(e.target.value)} />
+                    <TextField id="outlined-basic" label="Task Description" variant="outlined" fullWidth='true' name="description" onChange={e => setDescription(e.target.value)} />
                     <br />
                     <br />
                     <Button variant="outlined" component="label" fullWidth='true'>
-                        Upload
-                        <input hidden accept="*" multiple type="file" />
+                        <UploadImageToS3/>
                     </Button>
 
                     <br />
