@@ -111,5 +111,5 @@ Payload:
 
 [Auth0 Developer Resources](https://developer.auth0.com/resources/code-samples/full-stack/hello-world/basic-role-based-access-control/spa/react-javascript/express-javascript)
 
-[Auth0 Developer Resources](https://javascript.plainenglish.io/how-to-upload-files-to-aws-s3-in-react-591e533d615e)
+[How to Upload Files to AWS S3 in React](https://javascript.plainenglish.io/how-to-upload-files-to-aws-s3-in-react-591e533d615e)
 
