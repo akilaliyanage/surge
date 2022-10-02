@@ -3,18 +3,16 @@ services:
   api:
     build: ./be
     container_name: api_backend
+    image: surge-backend:starter
     ports:
       - '6060:6060'
-    volumes:
-      - ./api:/app
-      - ./app/node_modules
+    env_file:
+      - ./be/.env
   client:
     build: ./fe
     container_name: client_frontend
+    image: surge-frontend:starter
     ports:
       - '4040:4040'
-    volumes:
-      - ./client:/app
-      - ./app/node_modules
-    stdin_open: true
-    tty: true
+    env_file:
+      - ./fe/.env
