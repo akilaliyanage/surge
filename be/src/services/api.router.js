@@ -1,14 +1,8 @@
 const express = require("express");
-const {
-  getAdminMessage,
-  getProtectedMessage,
-  getPublicMessage,
-} = require("./messages.service");
 const { checkJwt } = require("../middleware/check-jwt.middleware");
 const {
   checkPermissions,
 } = require("../middleware/check-permissions.middleware");
-const { AdminMessagesPermissions } = require("./messages-permissions");
 const messagesRouter = express.Router();
 const Todo = require("../model/todo")
 
