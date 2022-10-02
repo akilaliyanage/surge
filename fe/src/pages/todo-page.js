@@ -6,7 +6,6 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { CommonNav } from "../components/navigation/common-nav";
-import { getProtectedResource } from "../services/message.service";
 import { CreateTodo } from "../components/create-todo";
 import ListTodo from "../components/list-todo";
 

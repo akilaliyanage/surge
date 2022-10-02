@@ -4,7 +4,7 @@ const express = require("express");
 const helmet = require("helmet");
 const nocache = require("nocache");
 const mongoose = require('mongoose');
-const { messagesRouter } = require("./messages/messages.router");
+const { messagesRouter } = require("./services/api.router");
 const { errorHandler } = require("./middleware/error.middleware");
 const { notFoundHandler } = require("./middleware/not-found.middleware");
 
