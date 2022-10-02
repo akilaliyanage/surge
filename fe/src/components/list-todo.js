@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
 import { useAuth0 } from "@auth0/auth0-react";
-import { getAllTodos, updateStatus } from '../services/api.service';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import Snackbar from '@mui/material/Snackbar';
+import { DataGrid } from '@mui/x-data-grid';
+import React, { useEffect } from 'react';
+import { getAllTodos, updateStatus } from '../services/api.service';
 
 const columns = [
   { field: '_id', headerName: 'ID', width: 0 },

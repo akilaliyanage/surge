@@ -1,35 +1,22 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useAuth0 } from "@auth0/auth0-react";
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import { createNewTodo } from '../services/api.service';
 import MuiAlert from '@mui/material/Alert';
-
-import Snackbar from '@mui/material/Snackbar';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import IconButton from '@mui/material/IconButton';
+import { styled } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
+import * as React from 'react';
+import { createNewTodo } from '../services/api.service';
 import CloseIcon from '@mui/icons-material/Close';
-
-import configs from '../assets/configs/config.json'
+import Snackbar from '@mui/material/Snackbar';
+import configs from '../assets/configs/config.json';
+import UploadImageToS3 from '../services/UploadImageToS3';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
-import UploadImageToS3 from '../services/UploadImageToS3';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;

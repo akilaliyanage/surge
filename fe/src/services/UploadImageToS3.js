@@ -1,7 +1,7 @@
-import React ,{useState} from 'react';
-import AWS from 'aws-sdk'
-import configs from '../assets/configs/config.json'
 import Button from '@mui/material/Button';
+import AWS from 'aws-sdk';
+import React, { useState } from 'react';
+import configs from '../assets/configs/config.json';
 
 const S3_BUCKET =configs.REACT_APP_S3_BUCKET;
 const REGION = configs.REACT_APP_REGION;

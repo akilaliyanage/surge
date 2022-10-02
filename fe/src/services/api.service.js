@@ -1,4 +1,3 @@
-import { Token } from "@mui/icons-material";
 import { callExternalApi } from "./external-api.service";
 
 const apiServerUrl = process.env.REACT_APP_API_SERVER_URL;
