@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  api:
+    build: ./be
+    container_name: api_backend
+    image: surge-backend:starter
+    ports:
+      - 6060:6060
+    env_file:
+      - ./be/.env
+  client:
+    build: ./fe
+    container_name: client_frontend
+    image: surge-frontend:starter
+    env_file:
+      - ./fe/.env
+    ports:
+      - '4040:4040'
