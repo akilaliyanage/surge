@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { useAuth0 } from "@auth0/auth0-react";
-import { getAllTodos } from '../services/api.service';
+import { getAllTodos, updateStatus } from '../services/api.service';
 import Button from '@mui/material/Button';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import Snackbar from '@mui/material/Snackbar';
 
 const columns = [
   { field: '_id', headerName: 'ID', width: 0 },
@@ -57,22 +58,28 @@ const columns = [
         console.log(params.row.status);
       };
 
-      const handleChange = (event, newAlignment) => {
-        setAlignment(newAlignment);
+      const handleChange = async (event, newStatus) => {
+        console.log(newStatus);
+
+        const { data, error } = await updateStatus(window.localStorage.getItem("token"), params.row._id, newStatus)
+
+        if (data) {
+          window.location.replace("/todo")
+        }
+
       };
 
       return <ToggleButtonGroup
-      color={params.row.status == "todo"?"primary": params.row.status == "inprogress"? "secondary" : params.row.status == "done"? "error": "primary"}
-      value={params.row.status}
-      exclusive
-      onChange={handleChange}
-      aria-label="Platform"
-      onClick={onClick}
-    >
-      <ToggleButton value="todo">TODO</ToggleButton>
-      <ToggleButton value="inprogress">IN PROGRESS</ToggleButton>
-      <ToggleButton value="done">DONE</ToggleButton>
-    </ToggleButtonGroup>;
+        color={params.row.status == "todo" ? "primary" : params.row.status == "inprogress" ? "secondary" : params.row.status == "done" ? "error" : "primary"}
+        value={params.row.status}
+        exclusive
+        onChange={handleChange}
+        aria-label="Platform"
+      >
+        <ToggleButton value="todo">TODO</ToggleButton>
+        <ToggleButton value="inprogress">IN PROGRESS</ToggleButton>
+        <ToggleButton value="done">DONE</ToggleButton>
+      </ToggleButtonGroup>;
     },
   },
 ];
@@ -82,6 +89,7 @@ export default function ListTodo() {
 
   const [todos, setTodos] = React.useState([]);
   const [status, setStatus] = React.useState('');
+  const [open, setOpen] = React.useState(false);
 
   const { user } = useAuth0();
 
@@ -95,6 +103,8 @@ export default function ListTodo() {
 
     const getTodos = async () => {
       const accessToken = await getAccessTokenSilently();
+
+      window.localStorage.setItem("token", accessToken)
 
       const { data, error } = await getAllTodos(accessToken, user.name)
 
